@@ -1,0 +1,26 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="module">
+      <h2>CSV Upload</h2>
+
+      <div style="float: right; margin-top: 2rem">
+          <a href="{% static 'csv_admin/member_info.csv' %}" download="member_info_sample.csv" class="button">Download Sample Member Info CSV</a>
+          <br><br>
+          <a href="{% static 'csv_admin/inventory.csv' %}" download="inventory_sample.csv" class="button">Download Sample Inventory CSV</a>
+          <br><br>
+      </div>
+      <br>
+      <br>
+
+      <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" value="Upload CSV" class="button">
+      </form>
+
+      <br>
+      <a href="{% url 'admin:index' %}">Back to Admin Dashboard</a>
+  </div>
+{% endblock %}
